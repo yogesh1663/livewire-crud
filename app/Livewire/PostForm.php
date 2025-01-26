@@ -39,19 +39,21 @@ class PostForm extends Component
         ]);
 
         $imagePath = null;
-       if($this->featured_image){
-        if ($this->post && $this->post->featured_image && Storage::disk('public')->exists($this->post->featured_image)) {
-            Storage::disk('public')->delete($this->post->featured_image);
-        }
+        if($this->featured_image){
+
+            if ($this->post && $this->post->featured_image && Storage::disk('public')->exists($this->post->featured_image)) {
+                Storage::disk('public')->delete($this->post->featured_image);
+            }
             $imageName = time().'.'.$this->featured_image->extension();
             $imagePath = $this->featured_image->storeAs('featured_images',$imageName,'public');
-       }
+        }
        if($this->post){
             $this->post->title = $this->title;
             $this->post->content = $this->content;
             $this->post->featured_image = $imagePath;
             $query = $this->post->save();
             if($query){
+                flash()->success('post updated successfully!');
                 return $this->redirect('/posts',navigate:true);
             }
        }
@@ -62,6 +64,7 @@ class PostForm extends Component
             $post->featured_image = $imagePath;
             $query = $post->save();
             if($query){
+                flash()->success('post created successfully!');
                 return $this->redirect('/posts',navigate:true);
             }
        }

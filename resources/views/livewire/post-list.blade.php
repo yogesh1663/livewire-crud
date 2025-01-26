@@ -25,7 +25,7 @@
                 <td>
                     <a href="{{route('posts.edit',$post->id)}}" class="btn btn-sm btn-outline-success"
                         wire:navigate>Edit</a>
-                    <button class="btn btn-sm btn-outline-danger"
+                    <button class="btn btn-sm btn-outline-danger" wire:confirm='Are you sure you want to delete it ?'
                         wire:click='handleDelete({{$post->id}})'>Delete</button>
                 </td>
             </tr>

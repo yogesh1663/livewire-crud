@@ -14,11 +14,15 @@ class PostList extends Component
     protected $paginationTheme = 'bootstrap';
 
     public function handleDelete(Post $post){
+
         if($post){
             if(Storage::disk('public')->exists($post->featured_image)){
                 Storage::disk('public')->delete($post->featured_image);
             }
-            $post->delete();
+            $query = $post->delete();
+            if($query){
+                flash()->success('post deleted successfully!');
+            }
         }
     }
     public function render()
