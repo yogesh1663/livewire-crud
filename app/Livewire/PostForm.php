@@ -76,6 +76,7 @@ class PostForm extends Component
 
     public function render()
     {
-        return view('livewire.post-form');
+        return view('livewire.post-form')
+        ->title($this->isView?'View':($this->post?'Edit':'Create'));
     }
 }

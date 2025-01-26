@@ -33,6 +33,6 @@ class PostList extends Component
             'posts' => Post::where('title','like','%'.$this->searchList.'%')
             ->orWhere('content','like','%'.$this->searchList.'%')
             ->paginate(5)
-        ]);
+        ])->title('Posts');
     }
 }
