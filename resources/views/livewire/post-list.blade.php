@@ -17,9 +17,10 @@
             @forelse ($posts as $post)
             <tr wire:key='{{$post->id}}'>
                 <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$post->title}}</td>
-                <td><img src="{{ asset('storage/featured_images/' . basename($post->featured_image)) }}" alt="image"
-                        class="imageimg-thumbnail" style="width: 50px; height:50px"></td>
+                <td><a href="{{route('posts.view',$post->id)}}">{{$post->title}}</a></td>
+                <td><a href="{{route('posts.view',$post->id)}}"><img
+                            src="{{ asset('storage/featured_images/' . basename($post->featured_image)) }}" alt="image"
+                            class="imageimg-thumbnail" style="width: 50px; height:50px"></a></td>
                 <td>{{$post->content}}</td>
                 <td>Edit|Delete</td>
             </tr>
