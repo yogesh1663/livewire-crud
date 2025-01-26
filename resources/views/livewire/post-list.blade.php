@@ -3,6 +3,13 @@
         <h2>Posts</h2>
         <a href="{{route('posts.create')}}" class="btn btn-sm btn-success" wire:navigate>Create Post</a>
     </div>
+    <div class="mt-2 row d-flex justify-content-end">
+        <div class="col-lg-6">
+            <input type="text" name="search" id="input-id" class="form-control" placeholder="Search"
+                wire:model.live='searchList'>
+        </div>
+    </div>
+
     <table class="table mt-2 table-bordered border-primary">
         <thead>
             <tr>

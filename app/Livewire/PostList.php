@@ -13,6 +13,8 @@ class PostList extends Component
     use WithPagination, WithoutUrlPagination;
     protected $paginationTheme = 'bootstrap';
 
+    public $searchList = null;
+
     public function handleDelete(Post $post){
 
         if($post){
@@ -28,7 +30,9 @@ class PostList extends Component
     public function render()
     {
         return view('livewire.post-list',[
-            'posts' => Post::paginate(5),
+            'posts' => Post::where('title','like','%'.$this->searchList.'%')
+            ->orWhere('content','like','%'.$this->searchList.'%')
+            ->paginate(5)
         ]);
     }
 }

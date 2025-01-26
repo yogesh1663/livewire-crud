@@ -40,7 +40,7 @@ class PostForm extends Component
 
         $imagePath = null;
         if($this->featured_image){
-
+            // dd('yes');
             if ($this->post && $this->post->featured_image && Storage::disk('public')->exists($this->post->featured_image)) {
                 Storage::disk('public')->delete($this->post->featured_image);
             }
@@ -50,7 +50,9 @@ class PostForm extends Component
        if($this->post){
             $this->post->title = $this->title;
             $this->post->content = $this->content;
-            $this->post->featured_image = $imagePath;
+            if($imagePath){
+                $this->post->featured_image = $imagePath;
+            }
             $query = $this->post->save();
             if($query){
                 flash()->success('post updated successfully!');
@@ -61,7 +63,9 @@ class PostForm extends Component
             $post = new Post();
             $post->title = $this->title;
             $post->content = $this->content;
-            $post->featured_image = $imagePath;
+            if($imagePath){
+                $post->featured_image = $imagePath;
+            }
             $query = $post->save();
             if($query){
                 flash()->success('post created successfully!');
