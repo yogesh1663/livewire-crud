@@ -22,7 +22,11 @@
                             src="{{ asset('storage/featured_images/' . basename($post->featured_image)) }}" alt="image"
                             class="imageimg-thumbnail" style="width: 50px; height:50px"></a></td>
                 <td>{{$post->content}}</td>
-                <td><a href="{{route('posts.edit',$post->id)}}">Edit</a></td>
+                <td>
+                    <a href="{{route('posts.edit',$post->id)}}" class="btn btn-sm btn-outline-success">Edit</a>
+                    <button class="btn btn-sm btn-outline-danger"
+                        wire:click='handleDelete({{$post->id}})'>Delete</button>
+                </td>
             </tr>
             @empty
             <tr>

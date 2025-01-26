@@ -3,9 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Post;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Storage;
 
 class PostForm extends Component
 {
@@ -32,13 +33,16 @@ class PostForm extends Component
     //function to save post
     public function savePost(){
         $this->validate([
-            'title' => 'required|min:3|unique:posts,title,' . $this->post->id,
+            'title' => 'required|min:3',
             'content' => 'required|min:3',
             'featured_image' => 'nullable|image|mimes:png,jpg,jpeg,gif|max:2048',
         ]);
 
         $imagePath = null;
        if($this->featured_image){
+        if ($this->post && $this->post->featured_image && Storage::disk('public')->exists($this->post->featured_image)) {
+            Storage::disk('public')->delete($this->post->featured_image);
+        }
             $imageName = time().'.'.$this->featured_image->extension();
             $imagePath = $this->featured_image->storeAs('featured_images',$imageName,'public');
        }
