@@ -22,7 +22,7 @@
                             src="{{ asset('storage/featured_images/' . basename($post->featured_image)) }}" alt="image"
                             class="imageimg-thumbnail" style="width: 50px; height:50px"></a></td>
                 <td>{{$post->content}}</td>
-                <td>Edit|Delete</td>
+                <td><a href="{{route('posts.edit',$post->id)}}">Edit</a></td>
             </tr>
             @empty
             <tr>

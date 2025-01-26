@@ -1,6 +1,6 @@
 <div class="container" style="max-width: 900px">
     <div class="border-black d-flex justify-content-between align-items-center border-bottom">
-        <h2>{{$isView?'View':'Create'}} Post</h2>
+        <h2>{{$isView?'View':($post?'Edit':'Create')}} Post</h2>
         <a href="{{route('posts.index')}}" class="btn btn-sm btn-secondary">Back</a>
     </div>
     <div class="p-3 mt-3 border border-black rounded">
@@ -30,6 +30,13 @@
                     <img src="{{ $featured_image->temporaryUrl() }}" class="img-thumbnail"
                         style="height: 200px; object-fit: cover;">
                 </div>
+                @else
+                @if ($post)
+                <div class="p-2 mt-3 border border-black d-flex justify-content-center align-items-center">
+                    <img src="{{ Storage::url($post->featured_image) }}" class="img-thumbnail"
+                        style="height: 200px; object-fit: cover;">
+                </div>
+                @endif
                 @endif
                 @error('featured_image')
                 <p class="mt-2 text-danger">{{$message}}</p>
@@ -52,7 +59,7 @@
             </div>
             @endif
             @if (!$isView)
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn {{$post?'btn-success':'btn-primary'}}">{{$post?'Update':'Create'}}</button>
             @endif
         </form>
     </div>
