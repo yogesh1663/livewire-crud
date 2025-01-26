@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 900px">
     <div class="border-black d-flex justify-content-between align-items-center border-bottom">
         <h2>Posts</h2>
-        <a href="{{route('posts.create')}}" class="btn btn-sm btn-success">Create Post</a>
+        <a href="{{route('posts.create')}}" class="btn btn-sm btn-success" wire:navigate>Create Post</a>
     </div>
     <table class="table mt-2 table-bordered border-primary">
         <thead>
@@ -23,7 +23,8 @@
                             class="imageimg-thumbnail" style="width: 50px; height:50px"></a></td>
                 <td>{{$post->content}}</td>
                 <td>
-                    <a href="{{route('posts.edit',$post->id)}}" class="btn btn-sm btn-outline-success">Edit</a>
+                    <a href="{{route('posts.edit',$post->id)}}" class="btn btn-sm btn-outline-success"
+                        wire:navigate>Edit</a>
                     <button class="btn btn-sm btn-outline-danger"
                         wire:click='handleDelete({{$post->id}})'>Delete</button>
                 </td>

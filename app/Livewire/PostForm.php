@@ -52,7 +52,7 @@ class PostForm extends Component
             $this->post->featured_image = $imagePath;
             $query = $this->post->save();
             if($query){
-                return redirect()->route('posts.index');
+                return $this->redirect('/posts',navigate:true);
             }
        }
        else{
@@ -62,7 +62,7 @@ class PostForm extends Component
             $post->featured_image = $imagePath;
             $query = $post->save();
             if($query){
-                return redirect()->route('posts.index');
+                return $this->redirect('/posts',navigate:true);
             }
        }
     }

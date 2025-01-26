@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 900px">
     <div class="border-black d-flex justify-content-between align-items-center border-bottom">
         <h2>{{$isView?'View':($post?'Edit':'Create')}} Post</h2>
-        <a href="{{route('posts.index')}}" class="btn btn-sm btn-secondary">Back</a>
+        <a href="{{route('posts.index')}}" class="btn btn-sm btn-secondary" wire:navigate>Back</a>
     </div>
     <div class="p-3 mt-3 border border-black rounded">
         <form wire:submit.prevent='savePost'>
